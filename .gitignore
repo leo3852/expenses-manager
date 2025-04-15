@@ -15,3 +15,17 @@ obj/
 # Secrets
 appsettings.Development.json
 appsettings.Production.json
+# Git folders accidentally added
+expenses-manager.git/
+expenses0manager.git/
+
+# Build artifacts
+obj/
+*.cache
+*.sample
+
+# Ignore AssemblyInfo temp files
+.AssemblyInfoInputs.cache
+
+# VS Code workspace history
+.history/
