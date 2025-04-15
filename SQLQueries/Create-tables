@@ -1,0 +1,31 @@
+-- -- Tabla de Usuarios
+-- CREATE TABLE Users (
+--     Id INT IDENTITY(1,1) PRIMARY KEY,
+--     Name NVARCHAR(100) NOT NULL,
+--     Email NVARCHAR(100) UNIQUE NOT NULL,
+--     PasswordHash NVARCHAR(255) NOT NULL,
+--     CreatedAt DATETIME DEFAULT GETDATE()
+-- );
+
+-- -- Tabla de Categorías
+-- CREATE TABLE Categories (
+--     Id INT IDENTITY(1,1) PRIMARY KEY,
+--     Name NVARCHAR(50) NOT NULL,
+--     Type NVARCHAR(10) CHECK (Type IN ('Income', 'Expense')) NOT NULL
+-- );
+
+-- -- Tabla de Transacciones
+-- CREATE TABLE Transactions (
+--     Id INT IDENTITY(1,1) PRIMARY KEY,
+--     UserId INT NOT NULL,
+--     Amount DECIMAL(18,2) NOT NULL,
+--     CategoryId INT NOT NULL,
+--     Type NVARCHAR(10) CHECK (Type IN ('Income', 'Expense')) NOT NULL,
+--     Date DATETIME DEFAULT GETDATE(),
+--     Description NVARCHAR(255),
+--     FOREIGN KEY (UserId) REFERENCES Users(Id),
+--     FOREIGN KEY (CategoryId) REFERENCES Categories(Id)
+-- );
+
+
+

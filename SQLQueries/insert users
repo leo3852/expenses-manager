@@ -1,0 +1,26 @@
+
+
+-- INSERT INTO Users (Name, Email, PasswordHash)
+
+-- -- Insertar categorías de gastos
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Rent', 'Expense');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Food', 'Expense');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Transport', 'Expense');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Entertainment', 'Expense');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Services', 'Expense');
+
+-- -- Insertar categorías de ingresos
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Salary', 'Income');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Selling product', 'Income');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Freelance', 'Income');
+-- INSERT INTO Categories (Name, Type)
+-- VALUES ('Inversiones', 'Income');
+

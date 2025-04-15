@@ -1,0 +1,6 @@
+{
+    "omnisharp": {
+        "enableRoslynAnalyzers": true,
+        "useGlobalMono": "always"
+    }
+}
