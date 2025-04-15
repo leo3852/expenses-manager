@@ -29,6 +29,7 @@ namespace TaskManagerAPI.Controllers
             {
                 return Unauthorized("Invalid or missing user ID.");
             }
+            
             var categories = await _context.Categories.ToListAsync();
             return Ok(categories);
         }
