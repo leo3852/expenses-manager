@@ -5,22 +5,27 @@ using TaskManagerAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add CORS policy
+// Load environment-based configuration
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
+// Setup CORS from config (more secure than AllowAnyOrigin in prod)
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader();
-        });
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins(allowedOrigins ?? new[] { "http://localhost:4200" })
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
-// Read Application URL from configuration
-var appUrl = builder.Configuration["ApplicationURL"] ?? "http://localhost:5050";
-
-// Configurar la conexión a SQL Server
+// SQL Server connection
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -28,7 +33,7 @@ if (string.IsNullOrEmpty(connectionString))
 }
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddControllers();
+// JWT configuration from config
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
@@ -41,14 +46,16 @@ builder.Services.AddAuthentication("Bearer")
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
 
+builder.Services.AddControllers();
 
 var app = builder.Build();
-// Use CORS
-app.UseCors("AllowAll");
+
+// Middleware
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
