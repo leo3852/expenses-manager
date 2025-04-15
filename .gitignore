@@ -1,2 +1,17 @@
-/appsettings.Production.json
-/appsettings.Development.json
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# Angular
+/node_modules/
+/dist/
+/.angular/
+
+# Visual Studio Code
+.vscode/
+
+# Secrets
+appsettings.Development.json
+appsettings.Production.json
