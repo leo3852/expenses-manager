@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins(allowedOrigins ?? new[] { "http://localhost:4200" })
+        policy.WithOrigins("https://leo3852.github.io/expenses-manager-frontend")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -53,6 +53,7 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddControllers();
 
 var app = builder.Build();
+app.UseHttpsRedirection();
 
 // Middleware
 app.UseCors("CorsPolicy");
