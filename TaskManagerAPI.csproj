@@ -8,14 +8,14 @@
 <!-- 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " /> -->
-
+<!-- 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' ">
       <ApplicationURL>https://localhost:5001</ApplicationURL>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' ">
       <ApplicationURL>http://localhost:5000</ApplicationURL>
-  </PropertyGroup>
+  </PropertyGroup> -->
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
