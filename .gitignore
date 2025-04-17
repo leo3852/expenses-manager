@@ -14,7 +14,6 @@ obj/
 
 # Secrets
 appsettings.Development.json
-appsettings.Production.json
 # Git folders accidentally added
 expenses-manager.git/
 expenses0manager.git/
