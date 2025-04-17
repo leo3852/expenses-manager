@@ -29,3 +29,4 @@ obj/
 
 # VS Code workspace history
 .history/
+obj/Debug/net9.0/TaskManagerAPI.AssemblyInfo.cs
