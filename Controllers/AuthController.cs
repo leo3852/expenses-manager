@@ -68,10 +68,10 @@ public class AuthController : ControllerBase
 
         try
         {
-            if (user != null && BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            if (user != null && !string.IsNullOrEmpty(user.PasswordHash) && BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
+                Console.WriteLine($"CurrencyId: {user.CurrencyId}");
                 var currencyEntity = await _context.Currencies.SingleOrDefaultAsync(c => c.Id == user.CurrencyId);
-
                 CurrencyDto? currency = null;
                 if (currencyEntity != null)
                 {
@@ -104,6 +104,7 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Login error: {ex}"); 
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
