@@ -19,11 +19,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("https://leo3852.github.io/expenses-manager-frontend")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
+
 
 // SQL Server connection
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
