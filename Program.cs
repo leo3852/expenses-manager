@@ -19,12 +19,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins(allowedOrigins)
+        policy.WithOrigins(allowedOrigins!)
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials(); // if we are using cookies or auth headers
     });
 });
-
 
 // SQL Server connection
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
