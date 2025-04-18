@@ -18,6 +18,7 @@ COPY --from=build /app/out ./
 
 # Set the environment variables if needed (optional)
 # ENV ASPNETCORE_ENVIRONMENT=Production
+# ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Expose the port the app will run on
 EXPOSE 80
